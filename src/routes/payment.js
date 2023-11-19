@@ -1,0 +1,33 @@
+require('module-alias/register')
+const express = require('express')
+const {upload} = require('~/multer')
+const Event = require('~/models/eventModel')
+const User =require('~/models/userModel')
+const Shop = require('~/models/shopModel')
+const Product = require ('~/models/productModel')
+const Cart = require('~/models/cartModel')
+const Address = require('~/models/addressModel')
+const {verifyAccessToken} = require('~/controller/userController')
+const Coupoun = require('~/models/coupounModel')
+const catchAsyncErrors = require("~/middleware/catchAsyncErrors");
+const ErrorHandler = require('~/utils/ErrorHandle')
+const path = require("path")
+const fs = require ('fs')
+const jwt = require('jsonwebtoken')
+const dotenv = require("dotenv")
+const bcrypt = require("bcryptjs")
+const sendMail = require("~/utils/sendMail")
+const sendAccessToken = require("~/utils/sendAccessToken")
+const sendShopToken = require("~/utils/sendShopToken")
+const {isAuthenticated,isAuthenticatedSeller} = require('~/middleware/auth')
+const { log, error } = require('console')
+const { env } = require('process')
+const { CONNREFUSED, REFUSED } = require('dns')
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+dotenv.config()
+let router = express.Router()
+let addressRoute =(app) => {
+
+  app.use("/api/v1",router)
+}
+module.exports = addressRoute
