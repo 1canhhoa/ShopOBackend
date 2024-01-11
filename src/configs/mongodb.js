@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 let connection = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1/E-shop", {
+    await mongoose.connect("mongodb+srv://nhamvanhien31102002:%40Hien2002@cluster0.ybmyoq3.mongodb.net/E-shop?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -10,5 +10,4 @@ let connection = async () => {
     console.log("failure");
   }
 };
-// export default connection
 module.exports = connection;

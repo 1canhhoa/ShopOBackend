@@ -3,7 +3,6 @@ const express = require('express')
 const {upload} = require('~/multer')
 const User =require('~/models/userModel')
 const Shop = require('~/models/shopModel')
-const {verifyAccessToken} = require('~/controller/userController')
 const catchAsyncErrors = require("~/middleware/catchAsyncErrors");
 const ErrorHandler = require('~/utils/ErrorHandle')
 const path = require("path")
@@ -16,11 +15,12 @@ const sendAccessToken = require("~/utils/sendAccessToken")
 const sendShopToken = require("~/utils/sendShopToken")
 const {isAuthenticated} = require('~/middleware/auth')
 const { log } = require('console')
+const data = require("~/data/data")
 dotenv.config()
 let router = express.Router()
 
 let userRoute =(app) => {
-  const encodedAccessToken = (payload) => {return jwt.sign({iss:"tohien",sub:payload,},process.env.JWT_ACCESSTK_SECRET,{expiresIn:"60m"})}
+  const encodedAccessToken = (payload) => {return jwt.sign({iss:"tohien",sub:payload,},process.env.JWT_ACCESSTK_SECRET,{expiresIn:"30m"})}
   router.post("/create-user" , upload.single("file") ,async (req, res, next) => {
     try { 
       const { username,password,email } = req.body;
@@ -113,10 +113,10 @@ let userRoute =(app) => {
       return  next (new ErrorHandler(error.message,500))
     }
   })
-  router.get('/test',(req,res,next)=>{
-    res.json({message:"ok con de"}).status(200)
+  router.get('/test',async(req,res,next)=>{
+    const user = await User.find({})
+    res.json({user:user[0]}).status(200)
   })
-
   app.use("/api/v1",router)
 }
 

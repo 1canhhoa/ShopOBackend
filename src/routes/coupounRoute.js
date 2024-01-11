@@ -5,7 +5,6 @@ const Event = require('~/models/eventModel')
 const User =require('~/models/userModel')
 const Shop = require('~/models/shopModel')
 const Product = require ('~/models/productModel')
-const {verifyAccessToken} = require('~/controller/userController')
 const Coupoun = require('~/models/coupounModel')
 const catchAsyncErrors = require("~/middleware/catchAsyncErrors");
 const ErrorHandler = require('~/utils/ErrorHandle')

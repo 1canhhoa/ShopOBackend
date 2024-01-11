@@ -3,7 +3,6 @@ const express = require('express')
 const {upload} = require('~/multer')
 const User =require('~/models/userModel')
 const Shop = require('~/models/shopModel')
-const {verifyAccessToken} = require('~/controller/userController')
 const catchAsyncErrors = require("~/middleware/catchAsyncErrors");
 const ErrorHandler = require('~/utils/ErrorHandle')
 const path = require("path")

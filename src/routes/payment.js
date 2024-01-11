@@ -7,7 +7,6 @@ const Shop = require('~/models/shopModel')
 const Product = require ('~/models/productModel')
 const Cart = require('~/models/cartModel')
 const Address = require('~/models/addressModel')
-const {verifyAccessToken} = require('~/controller/userController')
 const Coupoun = require('~/models/coupounModel')
 const catchAsyncErrors = require("~/middleware/catchAsyncErrors");
 const ErrorHandler = require('~/utils/ErrorHandle')
